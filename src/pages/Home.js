@@ -201,13 +201,6 @@ const Home = () => {
         ))}
       </div>
 
-      <div className='w-full bg-white my-16 p-4 rounded shadow-sm'>
-        <h4 className='text-xl text-gray-600 font-semibold'>
-          Chart by Priority
-        </h4>
-        {/* <Chart /> */} {/* Include Chart component here */}
-      </div>
-
       <div className='w-full flex flex-col md:flex-row gap-4 2xl:gap-10 py-8'>
         {/* /left */}
         <TaskTable tasks={summary.last10Task} />

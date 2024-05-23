@@ -3,38 +3,28 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './auth/Login';
 import Register from './auth/Register';
 import Home from './pages/Home';
-import PrivateRoute from './PrivateRoute'; // Import the PrivateRoute component
-
-import { auth } from './fire';
-import { onAuthStateChanged } from 'firebase/auth';
+import Users from './pages/Users';
+import Tasks from './pages/Tasks';
+import NotFound from './pages/NotFound';
+import AddTaskPage from './components/task/AddTask';
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const unSubscribeAuth = onAuthStateChanged(auth, (authenticatedUser) => {
-      if (authenticatedUser) {
-        setUser(authenticatedUser);
-      } else {
-        setUser(null);
-      }
-      setLoading(false);
-    });
-
-    return () => unSubscribeAuth();
-  }, []);
-
-  if (loading) {
-    return <div className='font-bold text-center text-5xl'>Loading...</div>;
-  }
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/home" element={<Home />}></Route>
+        <Route path="/login" element={<Login />}/>
+        <Route path="/register" element={<Register />}/>
+        
+        {/* PRIVATE ROUTES AFTER LOGIN */}
+        <Route path="/" element={<Home />}/>
+        <Route path='/users' element={<Users />} />
+        <Route path='/tasks' element={<Tasks />} />
+        <Route path='/addtask' element={<AddTaskPage/>}/>
+        <Route path="*" element={<NotFound />}/>
+
+        {/* ADMIN ROUTES */}
+
         {/* <Route
           path="/home"
           element={

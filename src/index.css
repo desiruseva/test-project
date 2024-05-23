@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Pacifico&display=swap');
 
 body {
   margin: 0;
@@ -19,3 +20,9 @@ code {
 .bg-blu {
   background-color: #02174c;
 }
+
+.custom-toast-success {
+  background-color: #28a745 !important; 
+  color: #fff !important; 
+}
+
